@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
+// forge script script/deploy.s.sol:DeployNft --rpc-url $rpc --broadcast --verify -vvvv
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract soulBondToken is ERC1155, Ownable {
     constructor(address initialOwner, string memory uri) ERC1155(uri) Ownable(initialOwner){
         transferOwnership(initialOwner);
-        mintSoulboundToken(initialOwner, 1)
+        // mintSoulboundToken(initialOwner, 1);
 
     }
 
@@ -29,7 +30,7 @@ contract soulBondToken is ERC1155, Ownable {
 
 
     // Mint a soulbound main token. Can only be called by the contract owner.
-    function mintSoulboundToken(address _owner, uint256 _tokenId) external onlyOwner {
+    function mintSoulboundToken(address _owner, uint256 _tokenId) public onlyOwner {
         require(soulboundTokenOwners[_owner] == 0, "Owner already has a soulbound token");
 
         // Mint the soulbound main token to the specified owner

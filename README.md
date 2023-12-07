@@ -1,66 +1,52 @@
-## Foundry
+# Documentation
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+The SoulBondToken smart contract introduces a unique ownership concept for digital tokens. It creates two types of tokens - Soulbound Tokens and Item Tokens. The Soulbound Token is like a special character, and Item Tokens are like accessories or items associated with that character.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### Key Features
 
-## Documentation
+- **Soulbound Tokens:**
+  - Minted by the contract owner.
+  - Each wallet can own only one Soulbound Token.
+  - Soulbound Tokens cannot be transferred.
 
-https://book.getfoundry.sh/
+- **Item Tokens:**
+  - Minted by the owner of the Soulbound Token.
+  - Represent accessories or items.
+  - Can be transferred only between addresses with the Soulbound Token.
 
-## Usage
+## Functionality
 
-### Build
+### Minting a Soulbound Token
 
-```shell
-$ forge build
+To create your unique Soulbound Token:
+
+```bash
+# Call this function to mint a Soulbound Token
+soulBondToken.mintSoulboundToken(yourWalletAddress)
 ```
 
-### Test
+### Minting Item Tokens
 
-```shell
-$ forge test
+Once you own a Soulbound Token, you can create Item Tokens:
+
+```bash
+# Mint accessories or items associated with your Soulbound Token
+soulBondToken.mintItemTokensToOwner(quantity)
 ```
 
-### Format
+### Transferring Item Tokens
 
-```shell
-$ forge fmt
+Share your Item Tokens with others who own a Soulbound Token:
+
+```bash
+# Transfer your accessories or items to another Soulbound Token owner
+soulBondToken.transferItemTokens(receiverAddress, quantity)
 ```
 
-### Gas Snapshots
+## Deployment
 
-```shell
-$ forge snapshot
-```
+The contract is deployed to sepolia testnet
+   ```
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
