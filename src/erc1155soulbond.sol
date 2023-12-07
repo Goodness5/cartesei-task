@@ -5,7 +5,11 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract soulBondToken is ERC1155, Ownable {
-    constructor(address initialOwner, string memory uri) ERC1155(uri) Ownable(initialOwner){}
+    constructor(address initialOwner, string memory uri) ERC1155(uri) Ownable(initialOwner){
+        transferOwnership(initialOwner);
+        mintSoulboundToken(initialOwner, 1)
+
+    }
 
 
 
